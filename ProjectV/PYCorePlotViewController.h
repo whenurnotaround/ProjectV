@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <CorePlot/CorePlot.h>
+#import "PYShareVariable.h"
 
 
 
@@ -18,6 +19,7 @@
     
 }
 
+@property (strong) PYShareVariable *shareVariable;
 @property (nonatomic, strong) CPTGraphHostingView *hostView;
 @property (nonatomic, strong) CPTTheme *selectedTheme;
 

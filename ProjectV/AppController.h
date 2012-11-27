@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "PYCorePlotViewController.h"
+#import "PYBug.h"
+#import "PYShareVariable.h"
 
 @interface AppController : NSObject {
     
 }
 
-@property (strong) NSArray *bugs;
-
+@property (strong) PYShareVariable *shareVariable;
 @property (weak) IBOutlet NSView *mainView;
 @property (strong) NSViewController *corePlotViewController;
 

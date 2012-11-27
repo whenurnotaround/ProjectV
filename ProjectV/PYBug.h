@@ -11,10 +11,11 @@
 @interface PYBug : NSObject
 
 @property (retain) NSString *bugID;
-@property (retain) NSString *file;
+@property (retain) NSString *fileName;
 @property (retain) NSString *version;
-@property (retain) NSDate *fixedDate;
-@property (retain) NSDate *reportedDate;
+@property (retain) NSDateComponents *fixedDate;
+@property (retain) NSDateComponents *reportedDate;
 @property (retain) NSString *committer;
 
+- (id)initWithBugID:(NSString *)bugID fileName:(NSString*)filename version:(NSString *)version fixedDate:(NSString *)fixedDate reportedDate:(NSString *)reportedDate committer:(NSString *)committer;
 @end

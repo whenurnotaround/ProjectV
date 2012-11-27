@@ -10,6 +10,7 @@
 
 @implementation PYCorePlotViewController
 
+@synthesize shareVariable = _shareVariable;
 @synthesize hostView = _hostView;
 @synthesize selectedTheme = _selectedTheme;
 
@@ -21,12 +22,18 @@ NSString *const kBugNumberPlot = @"PYBugReportNumberPlot";
    
     if (self) {
         // Initialization code here.
-        plotData = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:1.3], [NSNumber numberWithDouble:1.5], [NSNumber numberWithDouble:0.7], nil];
         
-        periodData = [[NSArray alloc] initWithObjects:@"yesterday", @"today", @"tomorrow", nil];
-
+        // get sharevariable
+        _shareVariable = [PYShareVariable instance];
         
-        [self initPlot];  
+        plotData = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2002"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2003"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2004"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2005"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2006"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2007"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2008"]], [NSNumber numberWithInt:[_shareVariable countBugFromYear:@"2009"]], nil];
+        
+        periodData = [[NSArray alloc] initWithObjects:@"2002", @"2003", @"2004", @"2005", @"2006", @"2007", @"2008", @"2009", nil];
+        
+        NSLog(@"%ld bugs have loaded into the systemm.", _shareVariable.bugReports.count);
+        
+        [self initPlot];
+        
     }
     
     return self;

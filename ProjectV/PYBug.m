@@ -10,15 +10,38 @@
 
 @implementation PYBug
 
-@synthesize bugID;
-@synthesize file;
-@synthesize version;
-@synthesize fixedDate;
-@synthesize reportedDate;
-@synthesize committer;
+@synthesize bugID = _bugID;
+@synthesize fileName = _fileName;
+@synthesize version = _version;
+@synthesize fixedDate = _fixedDate;
+@synthesize reportedDate = _reportedDate;
+@synthesize committer = _committer;
 
-- (void)initWithBugID:(NSString *)bugID fileName:(NSString*)filename version:(NSString *)version fixedDate:(NSDate *)fixedDate reportedDate:(NSDate *)reportedDate committer:(NSString *)committer {
+- (id)initWithBugID:(NSString *)bugID fileName:(NSString*)filename version:(NSString *)version fixedDate:(NSString *)fixedDate reportedDate:(NSString *)reportedDate committer:(NSString *)committer {
     
+    self = [super init];
+    
+    if (self) {
+        _bugID = bugID;
+        _fileName = filename;
+        _version = version;
+        _fixedDate = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[self convertStringToDate:fixedDate]];
+        _reportedDate = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[self convertStringToDate:reportedDate]];
+        _committer = committer;
+        
+       
+    }
+    
+    return self;
+}
+
+- (NSDate *)convertStringToDate:(NSString *)dateStr {
+    
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyymmdd"];
+    
+    return [df dateFromString:dateStr];
 }
 
 @end
